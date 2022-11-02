@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API testing by RestAssured" parallel="false">
+    <test name="Gores Api">
+        <parameter name="api_version" value="api_version_2"/>
+        <classes>
+            <class name="gorest.TC_01_Fetch_Users_Data"/>
+        </classes>
+    </test>
+</suite>

@@ -9,7 +9,7 @@ public class BaseTest {
 
     private final ConfigHelper configHelper = ConfigHelper.getInstance();
 
-    public RequestSpecification createUserEndPoint(String mainUrl, String apiVersion) {
+    public RequestSpecification initBaseRequest(String mainUrl, String apiVersion) {
         String apiVer = (System.getProperty("api.version") != null) ? System.getProperty("api.version") : ((apiVersion != null) ? apiVersion : "api_version_2");
         RestAssured.baseURI = mainUrl + configHelper.getProperty(apiVersion);
         RequestSpecification request = RestAssured.given().config(

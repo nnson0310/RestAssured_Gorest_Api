@@ -3,17 +3,15 @@ package api_models.responses;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
-@SuppressWarnings("ALL")
+@SuppressWarnings("All")
 @Getter
 @Setter
-public class Users {
+public class User {
     private int code;
 
     private Meta meta;
 
-    private List<Data> data;
+    private Data data;
 
     @Getter
     @Setter

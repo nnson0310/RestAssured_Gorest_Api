@@ -13,9 +13,15 @@
         <maven.compiler.target>11</maven.compiler.target>
         <rest.assured.version>5.2.0</rest.assured.version>
         <testng.version>7.6.1</testng.version>
+        <hamcrest.matchers.version>2.2</hamcrest.matchers.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.matchers.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>

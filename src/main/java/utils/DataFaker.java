@@ -2,6 +2,8 @@ package utils;
 
 import net.datafaker.Faker;
 
+import java.util.Random;
+
 public class DataFaker {
 
     private static Faker faker;
@@ -28,5 +30,19 @@ public class DataFaker {
 
     public String getFullName() {
         return getFirstName() + " " + getLastName();
+    }
+
+    public String getEmail() {
+        return faker.internet().emailAddress();
+    }
+
+    public String getGender() {
+        String[] genders = {"male", "female"};
+        return genders[MethodHelper.getZeroOrOne()];
+    }
+
+    public String getStatus() {
+        String[] status = {"active", "inactive"};
+        return status[MethodHelper.getZeroOrOne()];
     }
 }

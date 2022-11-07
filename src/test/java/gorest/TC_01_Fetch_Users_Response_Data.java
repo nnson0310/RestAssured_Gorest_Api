@@ -1,14 +1,15 @@
 package gorest;
 
-import api.end_points.UserEndPoints;
-import api_models.responses.User;
-import api_models.responses.Users;
+import api_endpoints.UserEndPoints;
+import api_models.responses.SingleUserResponse;
+import api_models.responses.UsersResponse;
 import com.google.gson.Gson;
 import commons.BaseTest;
 import commons.GlobalConstants;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -17,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class TC_01_Fetch_Users_Data extends BaseTest {
+public class TC_01_Fetch_Users_Response_Data extends BaseTest {
 
     private RequestSpecification request;
     public static final String name = "Gandharva Dutta";
@@ -33,9 +34,9 @@ public class TC_01_Fetch_Users_Data extends BaseTest {
     }
 
     @Test
-    public void TC_01_Fetch_User() {
+    public void TC_01_Fetch_All_User() {
         Response response = new UserEndPoints().fetchAllUsers(request);
-        Users users = new Gson().fromJson(response.getBody().asString(), Users.class);
+        UsersResponse users = new Gson().fromJson(response.getBody().asString(), UsersResponse.class);
 
         assertThat(response.getStatusCode(), equalTo(200));
         assertThat(users.getCode(), equalTo(200));
@@ -45,7 +46,7 @@ public class TC_01_Fetch_Users_Data extends BaseTest {
     @Test
     public void TC_02_Fetch_User_By_Query_String() {
         Response response = new UserEndPoints().fetchUserByQueryString(request, "name", name);
-        Users users = new Gson().fromJson(response.getBody().asString(), Users.class);
+        UsersResponse users = new Gson().fromJson(response.getBody().asString(), UsersResponse.class);
 
         assertThat(response.getStatusCode(), equalTo(200));
         assertThat(users.getCode(), equalTo(200));
@@ -58,7 +59,7 @@ public class TC_01_Fetch_Users_Data extends BaseTest {
     @Test
     public void TC_03_Fetch_User_By_Path_Param() {
         Response response = new UserEndPoints().fetchUserByPathParam(request, id);
-        User singleUser = new Gson().fromJson(response.getBody().asString(), User.class);
+        SingleUserResponse singleUser = new Gson().fromJson(response.getBody().asString(), SingleUserResponse.class);
 
         assertThat(response.getStatusCode(), equalTo(200));
         assertThat(singleUser.getCode(), equalTo(200));

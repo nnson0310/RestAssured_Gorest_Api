@@ -2,6 +2,8 @@ package api_endpoints;
 
 import api.routes.UserRoutes;
 import api_models.requests.CreateUserRequest;
+
+import api_models.requests.UpdateUserRequest;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.ConfigHelper;
@@ -33,5 +35,14 @@ public class UserEndPoints {
 //                .log()
 //                .all()
                 .post(UserRoutes.getBaseUserRoute());
+    }
+
+    public Response updateUser(RequestSpecification request, UpdateUserRequest updateUserRequest) {
+        String bearerToken = MethodHelper.getSystemEnvironmentVariable(ConfigHelper.getInstance().getProperty("api_access_token"));
+        return request
+                .header("Authorization", "Bearer " + bearerToken)
+                .pathParam("userId", updateUserRequest.id)
+                .body(updateUserRequest)
+                .put(UserRoutes.getBaseUserRoute() + "/{userId}");
     }
 }

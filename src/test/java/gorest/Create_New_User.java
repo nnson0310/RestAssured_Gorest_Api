@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("ALL")
-public class TC_02_Create_Single_UserResponse extends BaseTest {
+public class Create_New_User extends BaseTest {
 
     private RequestSpecification request;
 

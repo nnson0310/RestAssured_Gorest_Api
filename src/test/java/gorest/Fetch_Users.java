@@ -9,7 +9,6 @@ import commons.GlobalConstants;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -18,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class TC_01_Fetch_Users_Response_Data extends BaseTest {
+public class Fetch_Users extends BaseTest {
 
     private RequestSpecification request;
     public static final String name = "Gandharva Dutta";

@@ -2,8 +2,6 @@ package api_models.requests;
 
 public class UpdateUserRequest {
 
-    public int id;
-
     public String email;
 
     public String name;
@@ -12,8 +10,7 @@ public class UpdateUserRequest {
 
     public String status;
 
-    public UpdateUserRequest(int id, String email, String name, String gender, String status) {
-        this.id = id;
+    public UpdateUserRequest(String email, String name, String gender, String status) {
         this.email = email;
         this.name = name;
         this.gender = gender;

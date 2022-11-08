@@ -1,7 +1,6 @@
 package gorest;
 
 import api_endpoints.UserEndPoints;
-import api_models.requests.CreateUserRequest;
 import api_models.requests.UpdateUserRequest;
 import api_models.responses.CreateUserResponse;
 import com.google.gson.Gson;
@@ -19,7 +18,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 
 @SuppressWarnings("ALL")
-public class Update_Users extends BaseTest {
+public class Delete_User extends BaseTest {
 
     private RequestSpecification request;
 
@@ -38,22 +37,9 @@ public class Update_Users extends BaseTest {
     }
 
     @Test
-    public void TC_01_Update_User_Success() {
-        String updateEmail = dataFaker.getEmail();
-        String updateName = dataFaker.getFullName();
-        String updateGender = dataFaker.getGender();
-        String updateStatus = dataFaker.getStatus();
+    public void TC_01_Delete_User_Success() {
+        Response response = new UserEndPoints().deleteUser(request, userId);
 
-        UpdateUserRequest updateUserRequest = new UpdateUserRequest(updateEmail, updateName, updateGender, updateStatus);
-        Response response = new UserEndPoints().updateUser(request, updateUserRequest, userId);
-
-        System.out.println(response.body().asString());
-
-        CreateUserResponse createUserResponse = new Gson().fromJson(response.getBody().asString(), CreateUserResponse.class);
-        assertThat(createUserResponse.getEmail(), equalTo(updateEmail));
-        assertThat(createUserResponse.getName(), equalTo(updateName));
-        assertThat(createUserResponse.getGender(), equalTo(updateGender));
-        assertThat(createUserResponse.getStatus(), equalTo(updateStatus));
-        assertThat(createUserResponse.getId(), equalTo(userId));
+        assertThat(response.getStatusCode(), equalTo("204"));
     }
 }

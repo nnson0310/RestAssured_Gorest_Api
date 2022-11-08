@@ -4,6 +4,8 @@ import api.routes.UserRoutes;
 import api_models.requests.CreateUserRequest;
 
 import api_models.requests.UpdateUserRequest;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.ConfigHelper;
@@ -37,12 +39,36 @@ public class UserEndPoints {
                 .post(UserRoutes.getBaseUserRoute());
     }
 
-    public Response updateUser(RequestSpecification request, UpdateUserRequest updateUserRequest) {
+    public Response updateUser(RequestSpecification request, UpdateUserRequest updateUserRequest, int userId) {
         String bearerToken = MethodHelper.getSystemEnvironmentVariable(ConfigHelper.getInstance().getProperty("api_access_token"));
-        return request
+//        return request
+//                .log()
+//                .all()
+//                .header("Authorization", "Bearer " + bearerToken)
+//                .pathParam("userId", userId)
+//                .body(updateUserRequest)
+//                .patch(UserRoutes.getBaseUserRoute() + "/{userId}");
+        RequestSpecification newRequest = RestAssured.given().accept(ContentType.MULTIPART);
+        return RestAssured.given(newRequest)
+                .log()
+                .all()
                 .header("Authorization", "Bearer " + bearerToken)
-                .pathParam("userId", updateUserRequest.id)
-                .body(updateUserRequest)
-                .put(UserRoutes.getBaseUserRoute() + "/{userId}");
+                .pathParam("userId", userId)
+                .formParam("email", updateUserRequest.email)
+                .formParam("name", updateUserRequest.name)
+                .formParam("gender", updateUserRequest.gender)
+                .formParam("status", updateUserRequest.status)
+                .patch(UserRoutes.getBaseUserRoute() + "/{userId}").then().log().all().extract().response();
+    }
+
+    public Response deleteUser(RequestSpecification request, int userId) {
+        String bearerToken = MethodHelper.getSystemEnvironmentVariable(ConfigHelper.getInstance().getProperty("api_access_token"));
+        RequestSpecification newRequest = RestAssured.given().accept(ContentType.ANY);
+        return RestAssured.given(newRequest)
+                .log()
+                .all()
+                .header("Authorization", "Bearer " + bearerToken)
+                .pathParam("userId", userId)
+                .delete(UserRoutes.getBaseUserRoute() + "/{userId}").then().log().all().extract().response();
     }
 }

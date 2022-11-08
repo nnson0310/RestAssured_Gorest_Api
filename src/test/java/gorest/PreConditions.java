@@ -16,6 +16,12 @@ public class PreConditions {
         CreateUserRequest createRequest = new CreateUserRequest(email, name, gender, status);
         Response response = new UserEndPoints().createUser(request, createRequest);
 
+        System.out.println("============================Create New User=====================================");
+
+        System.out.println(response.body().asString());
+
+        System.out.println("=================================================================");
+
         CreateUserResponse createUserResponse = new Gson().fromJson(response.getBody().asString(), CreateUserResponse.class);
         assertThat(createUserResponse.getEmail(), equalTo(email));
         assertThat(createUserResponse.getName(), equalTo(name));

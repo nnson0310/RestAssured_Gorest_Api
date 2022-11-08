@@ -4,7 +4,8 @@
     <test name="Gores Api">
         <parameter name="api_version" value="api_version_2"/>
         <classes>
-            <class name="gorest.Update_Users"/>
+<!--            <class name="gorest.Update_Users"/>-->
+            <class name="gorest.Delete_User"/>
         </classes>
     </test>
 </suite>

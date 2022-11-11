@@ -11,12 +11,24 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <selenium.version>4.6.0</selenium.version>
+        <webdriver.manager.version>5.3.1</webdriver.manager.version>
         <rest.assured.version>5.2.0</rest.assured.version>
         <testng.version>7.6.1</testng.version>
         <hamcrest.matchers.version>2.2</hamcrest.matchers.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdriver.manager.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>

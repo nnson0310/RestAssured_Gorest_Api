@@ -5,7 +5,9 @@
         <parameter name="api_version" value="api_version_2"/>
         <classes>
 <!--            <class name="gorest.Update_Users"/>-->
-            <class name="gorest.Delete_User"/>
+<!--            <class name="gorest.Delete_User"/>-->
+<!--            <class name="ericsson.Demo"/>-->
+            <class name="imgur.Demo"/>
         </classes>
     </test>
 </suite>
